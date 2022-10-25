@@ -10,7 +10,6 @@ class ExampleCommand(sublime_plugin.TextCommand):
 	def run(self, edit, selected):
 		rdbHost = '127.0.0.1'
 		rdbPort = '28015'
-		projectId = '98e5e32e-e37f-4432-96a8-8843fab0631a'
 		try: 
 			r.connect( rdbHost, rdbPort).repl()
 		except Exception as e:
