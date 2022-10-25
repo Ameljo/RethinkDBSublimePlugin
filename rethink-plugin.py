@@ -1,21 +1,30 @@
 import sublime_plugin
 import logging
 import json
+import os, sys
+sys.path.append(os.path.join(os.getcwd(), 'libs'))
 
-from RethinkDB.libs.rethinkdb import r
+from rethinkdb import r
 
 class ExampleCommand(sublime_plugin.TextCommand):
 	def run(self, edit, selected):
 		rdbHost = '127.0.0.1'
 		rdbPort = '28015'
 		projectId = '98e5e32e-e37f-4432-96a8-8843fab0631a'
-		r.connect( rdbHost, rdbPort).repl()
-		# NOHA GET THE FUCKING BOAT NOW!!!
+		try: 
+			r.connect( rdbHost, rdbPort).repl()
+		except Exception as e:
+			self.view.insert(edit, 0, str(e))
+
+		# Some insert queries will have these values in javascript format
 		true = True
 		false = False
 		null = None
 		code = compile(selected, '<string>','single')
-		res = eval(selected)
+		try:
+			res = eval(selected)
+		except Exception as e:
+			self.view.insert(edit, 0, str(e))
 		y = json.dumps(res, indent='    ')
 		print(res)
 		self.view.insert(edit, 0, y)

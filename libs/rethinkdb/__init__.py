@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from RethinkDB.libs.rethinkdb import errors, version
+import os, sys
+sys.path.append(os.getcwd())
+from rethinkdb import errors, version
 
 # The builtins here defends against re-importing something obscuring `object`.
 try:
