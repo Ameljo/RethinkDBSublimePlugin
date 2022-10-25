@@ -1,0 +1,11 @@
+[{
+  "caption": "RethinkDB",
+  "children": [{
+    "caption": "Run Query",
+    "command": "query_panel"
+  },
+  {
+    "caption": "Run Query in new window",
+    "command": "query_new_window"
+  }]
+}]
